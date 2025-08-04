@@ -1,0 +1,50 @@
+feature_detection:
+  orb:
+    n_features: 500
+    scale_factor: 1.2
+    n_levels: 8
+    edge_threshold: 31
+    first_level: 0
+    WTA_K: 2
+    score_type: HARRIS_SCORE
+    patch_size: 31
+    fast_threshold: 20
+
+feature_matching:
+  matcher:
+    ratio_test: 0.75
+    cross_check: true
+
+pose_estimation:
+  vio:
+    use_imu: true
+    imu_rate: 200
+    gravity: 9.81
+
+mapping:
+  map:
+    max_landmarks: 10000
+    optimization_iterations: 10
+
+loop_closure:
+  detector:
+    use_bow: true
+    bow_vocab_size: 1000
+
+sensor_fusion:
+  sensors:
+    camera:
+      resolution: [640, 480]
+      frame_rate: 30
+    imu:
+      rate: 200
+
+control:
+  path_planning:
+    algorithm: RRT*
+    max_iterations: 1000
+    goal_tolerance: 0.5
+
+logging:
+  level: INFO
+  file: logs/vslam.log
